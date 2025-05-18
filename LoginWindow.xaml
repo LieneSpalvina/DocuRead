@@ -1,0 +1,83 @@
+﻿<Window
+    x:Class="DocumentReaderApp.Views.LoginWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Login"
+    Width="1024"
+    Height="768"
+    MinWidth="800"
+    MinHeight="600"
+    WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!--  Home Button  -->
+            <RowDefinition Height="Auto" />
+            <!--  Username  -->
+            <RowDefinition Height="Auto" />
+            <!--  Password  -->
+            <RowDefinition Height="Auto" />
+            <!--  Log In Button  -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Home Button (Top Left)  -->
+        <Button
+            Grid.Row="0"
+            Width="100"
+            Height="30"
+            Margin="10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding BackCommand}"
+            Content="Back"
+            FontSize="14" />
+
+        <!--  Username Input  -->
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,30,0,10"
+            HorizontalAlignment="Center">
+            <TextBlock
+                Margin="0,0,0,5"
+                FontSize="18"
+                Text="Username:"
+                TextAlignment="Center" />
+            <TextBox
+                Name="UsernameTextBox"
+                Width="250"
+                Height="30"
+                Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <!--  Password Input  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,10,0,10"
+            HorizontalAlignment="Center">
+            <TextBlock
+                Margin="0,0,0,5"
+                FontSize="18"
+                Text="Password:"
+                TextAlignment="Center" />
+            <PasswordBox
+                Name="PasswordBox"
+                Width="250"
+                Height="30"
+                PasswordChanged="PasswordBox_PasswordChanged" />
+        </StackPanel>
+
+        <!--  Log In Button  -->
+        <Button
+            Grid.Row="3"
+            Width="200"
+            Height="40"
+            Margin="0,20,0,10"
+            HorizontalAlignment="Center"
+            Command="{Binding LoginCommand}"
+            Content="Log In"
+            FontSize="18" />
+
+    </Grid>
+</Window>

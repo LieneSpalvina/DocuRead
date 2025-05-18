@@ -1,0 +1,152 @@
+﻿<Window
+    x:Class="DocumentReaderApp.Views.DocumentsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Saved Documents"
+    Width="1024"
+    Height="768"
+    MinWidth="800"
+    MinHeight="600"
+    WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!--  Filters + Summary  -->
+            <RowDefinition Height="*" />
+            <!--  DataGrid  -->
+            <RowDefinition Height="Auto" />
+            <!--  Buttons  -->
+        </Grid.RowDefinitions>
+
+        <!--  Filters + Summary  -->
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Filters  -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBox
+                    Width="200"
+                    Margin="0,0,10,0"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+                <ComboBox
+                    Width="150"
+                    Margin="0,0,10,0"
+                    ItemsSource="{Binding AvailableLanguages}"
+                    SelectedItem="{Binding SelectedLanguage, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Button Command="{Binding ClearFiltersCommand}" Content="Clear" />
+            </StackPanel>
+
+            <!--  Summary  -->
+            <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Text="📊 Summary" />
+                <TextBlock Text="{Binding TotalDocuments, StringFormat=Total Documents: {0}}" />
+                <TextBlock Text="{Binding MostRecentScan, StringFormat=Most Recent Scan: {0}}" />
+
+                <ItemsControl ItemsSource="{Binding LanguageCounts}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding Path=Key, Mode=OneWay}" />
+                                <Run Text=": " />
+                                <Run Text="{Binding Path=Value, Mode=OneWay}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+
+        <!--  DataGrid  -->
+        <DataGrid
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding Documents}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="50"
+                    Binding="{Binding Id}"
+                    Header="ID" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding FileName}"
+                    Header="File Name" />
+                <DataGridTextColumn
+                    Width="100"
+                    Binding="{Binding Language}"
+                    Header="Language" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding ExtractionDate}"
+                    Header="Date Extracted" />
+
+                <DataGridTemplateColumn Width="100" Header="Original File">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="OpenOriginal_Click" Content="Open" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="100" Header="Text File">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="OpenText_Click" Content="Open" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="100" Header="OCR JSON">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="OpenJson_Click" Content="Open" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="100" Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Command="{Binding DataContext.DeleteDocumentCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}"
+                                Content="Delete" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--  Buttons  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="100"
+                Height="30"
+                Margin="0,0,10,0"
+                Command="{Binding BackCommand}"
+                Content="Back"
+                FontSize="14" />
+            <Button
+                Width="100"
+                Height="30"
+                Command="{Binding LogOutCommand}"
+                Content="Log out"
+                FontSize="14" />
+        </StackPanel>
+    </Grid>
+</Window>

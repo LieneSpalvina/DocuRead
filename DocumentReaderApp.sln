@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentReaderApp", "DocumentReaderApp.csproj", "{C6CCD1C9-895C-4A08-9AF3-8DC5E6C04B36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{8BAFFD27-8CA1-4012-A63D-BB93426E766E}"
+	ProjectSection(SolutionItems) = preProject
+		..\OneDrive\Dators\images.png = ..\OneDrive\Dators\images.png
+		..\OneDrive\Dators\Screenshot 2025-03-01 010930.png = ..\OneDrive\Dators\Screenshot 2025-03-01 010930.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6CCD1C9-895C-4A08-9AF3-8DC5E6C04B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6CCD1C9-895C-4A08-9AF3-8DC5E6C04B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6CCD1C9-895C-4A08-9AF3-8DC5E6C04B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6CCD1C9-895C-4A08-9AF3-8DC5E6C04B36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2349C95-FC29-42B3-845F-2315FC27FEFD}
+	EndGlobalSection
+EndGlobal
