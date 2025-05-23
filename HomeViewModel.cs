@@ -19,6 +19,7 @@ namespace DocumentReaderApp.ViewModels
         private string _extractedText = string.Empty;
         private string _selectedLanguage = string.Empty;
         private readonly DocumentService _documentService;
+        private readonly AuthService _authService;
 
 
         public string SelectedFilePath
@@ -46,10 +47,11 @@ namespace DocumentReaderApp.ViewModels
         public ICommand SaveTextCommand { get; }
         public ICommand SignOutCommand { get; }
 
-        public HomeViewModel()
+        public HomeViewModel(AuthService authService)
         {
             _ocrService = new OCRService();
             _documentService = new DocumentService();
+            _authService = authService;
 
             BrowseFileCommand = new RelayCommand(BrowseFile);
             ExtractTextCommand = new RelayCommand(ExtractText);
@@ -152,8 +154,9 @@ namespace DocumentReaderApp.ViewModels
 
         private void SignOut()
         {
-            // Replace this with logic to navigate to login or close the session as needed
-            Application.Current.Shutdown(); // This just exits the app
+            
+            new MainWindow(_authService).Show();
+            Application.Current.Windows[0]?.Close();
         }
 
         

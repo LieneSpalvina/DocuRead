@@ -1,6 +1,11 @@
 using System.Windows;
 using DocumentReaderApp.Services;
 using DocumentReaderApp.ViewModels;
+using Microsoft.Win32;
+using DocumentReaderApp.Models;
+using System.Windows.Controls;
+using System.Diagnostics;
+using System.IO;
 
 namespace DocumentReaderApp.Views
 {
@@ -12,7 +17,7 @@ namespace DocumentReaderApp.Views
         {
             InitializeComponent();
             _authService = authService;
-            DataContext = new HomeViewModel();
+            DataContext = new HomeViewModel(authService);
         }
 
         private void OpenDocuments_Click(object sender, RoutedEventArgs e)
